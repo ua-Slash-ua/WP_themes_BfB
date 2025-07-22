@@ -26,3 +26,5 @@ require THEME_PATH . '/inc/custom_label/new_role_coach.php';
 require THEME_PATH . '/inc/custom_label/new_role_partner.php';
 
 // Include <other>
+
+add_theme_support('post-thumbnails');
