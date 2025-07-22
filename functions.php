@@ -16,6 +16,7 @@ require THEME_PATH . '/inc/helper_func/reorder_theme_settings_sub_menu.php';
 // Include <admin_panel>
 require THEME_PATH . '/inc/admin_panel/theme_settings.php';
 require THEME_PATH . '/inc/admin_panel/ap_faq.php';
+require THEME_PATH . '/inc/admin_panel/ap_banner.php';
 
 // Include <endpoint>
 
