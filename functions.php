@@ -22,6 +22,8 @@ require THEME_PATH . '/inc/admin_panel/ap_events.php';
 // Include <endpoint>
 
 // Include <custom_functions>
+require THEME_PATH . '/inc/custom_functions/filter_user_login.php';
+
 
 // Include <custom_labels>
 require THEME_PATH . '/inc/custom_label/new_role_coach.php';
