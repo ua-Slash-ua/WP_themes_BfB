@@ -84,32 +84,35 @@ function render_banner_main_meta_box($post)
 {
 
     $input_text_title = get_post_meta($post->ID, 'input_text_title', true);
-$input_text_description = get_post_meta($post->ID, 'input_text_description', true);
-$input_text_sub_title = get_post_meta($post->ID, 'input_text_sub_title', true);
-$img_link_banner = get_post_meta($post->ID, 'img_link_data_banner', true);
+    $input_text_description = get_post_meta($post->ID, 'input_text_description', true);
+    $input_text_sub_title = get_post_meta($post->ID, 'input_text_sub_title', true);
+    $img_link_banner = get_post_meta($post->ID, 'img_link_data_banner', true);
 
     ?>
 
-              <div class="form-container-input_text">
-<label for="input_text_title">Title</label>
-        <input type="text" value="<?php echo esc_attr($input_text_title); ?>" name = "input_text_title" id="input_text_title" class ="input_text-item">
-<label for="input_text_description">Description</label>
-        <input type="text" value="<?php echo esc_attr($input_text_description); ?>" name = "input_text_description" id="input_text_description" class ="input_text-item">
-<label for="input_text_sub_title">Sub_title</label>
-        <input type="text" value="<?php echo esc_attr($input_text_sub_title); ?>" name = "input_text_sub_title" id="input_text_sub_title" class ="input_text-item">
+    <div class="form-container-input_text">
+        <label for="input_text_title">Title</label>
+        <input type="text" value="<?php echo esc_attr($input_text_title); ?>" name="input_text_title"
+               id="input_text_title" class="input_text-item">
+        <label for="input_text_description">Description</label>
+        <input type="text" value="<?php echo esc_attr($input_text_description); ?>" name="input_text_description"
+               id="input_text_description" class="input_text-item">
+        <label for="input_text_sub_title">Sub_title</label>
+        <input type="text" value="<?php echo esc_attr($input_text_sub_title); ?>" name="input_text_sub_title"
+               id="input_text_sub_title" class="input_text-item">
 
-           </div>
-          <div class="form-container-img_link">
-<div class="img_link_hero" id="img_link_hero_banner">
-                <input type="button" value="Upload Banner" id="img_link_upload_banner">
-                <input type="text" hidden="hidden" value="<?php echo esc_attr($img_link_banner); ?>"
-                       id="img_link_data_banner" name="img_link_data_banner">
-                <div class="img_link_preview_container" id="img_link_preview_container_banner">
+    </div>
+    <div class="form-container-img_link">
+        <div class="img_link_hero" id="img_link_hero_banner">
+            <input type="button" value="Upload Banner" id="img_link_upload_banner">
+            <input type="text" hidden="hidden" value="<?php echo esc_attr($img_link_banner); ?>"
+                   id="img_link_data_banner" name="img_link_data_banner">
+            <div class="img_link_preview_container" id="img_link_preview_container_banner">
 
-                </div>
             </div>
+        </div>
 
-           </div>
+    </div>
 
     <?php
 
@@ -133,23 +136,23 @@ function render_banner_video_meta_box($post)
 {
 
     $img_link_aside_photo = get_post_meta($post->ID, 'img_link_data_aside_photo', true);
-$video_aside_video = get_post_meta($post->ID, 'video_data_aside_video', true);
+    $video_aside_video = get_post_meta($post->ID, 'video_data_aside_video', true);
 
     ?>
 
-              <div class="form-container-img_link">
-<div class="img_link_hero" id="img_link_hero_aside_photo">
-                <input type="button" value="Upload Aside_photo" id="img_link_upload_aside_photo">
-                <input type="text" hidden="hidden" value="<?php echo esc_attr($img_link_aside_photo); ?>"
-                       id="img_link_data_aside_photo" name="img_link_data_aside_photo">
-                <div class="img_link_preview_container" id="img_link_preview_container_aside_photo">
+    <div class="form-container-img_link">
+        <div class="img_link_hero" id="img_link_hero_aside_photo">
+            <input type="button" value="Upload Aside_photo" id="img_link_upload_aside_photo">
+            <input type="text" hidden="hidden" value="<?php echo esc_attr($img_link_aside_photo); ?>"
+                   id="img_link_data_aside_photo" name="img_link_data_aside_photo">
+            <div class="img_link_preview_container" id="img_link_preview_container_aside_photo">
 
-                </div>
             </div>
+        </div>
 
-           </div>
-          <div class="form-container-video">
-<div class="video_hero" id="video_hero_aside_video">
+    </div>
+    <div class="form-container-video">
+        <div class="video_hero" id="video_hero_aside_video">
             <input type="button" value="Upload Aside_video" id="video_upload_aside_video">
             <input type="text" hidden="hidden" value="<?php echo esc_attr($video_aside_video); ?>"
                    id="video_data_aside_video" name="video_data_aside_video">
@@ -158,19 +161,19 @@ $video_aside_video = get_post_meta($post->ID, 'video_data_aside_video', true);
             </div>
         </div>
 
-           </div>
+    </div>
 
     <?php
 
 }
 
 $fields_banner = [
-    create_meta_field_config('input_text_title','Title'),
-create_meta_field_config('input_text_description','Description'),
-create_meta_field_config('input_text_sub_title','Sub_title'),
-create_meta_field_config('img_link_data_banner', 'Banner', 'sanitize_text_field', 'normalize_array_or_string'),
-create_meta_field_config('img_link_data_aside_photo', 'Aside_photo', 'sanitize_text_field', 'normalize_array_or_string'),
-create_meta_field_config('video_data_aside_video', 'Aside_video', 'sanitize_text_field', 'normalize_array_or_string')
+    create_meta_field_config('input_text_title', 'Title'),
+    create_meta_field_config('input_text_description', 'Description'),
+    create_meta_field_config('input_text_sub_title', 'Sub_title'),
+    create_meta_field_config('img_link_data_banner', 'Banner', 'sanitize_text_field', 'normalize_array_or_string'),
+    create_meta_field_config('img_link_data_aside_photo', 'Aside_photo', 'sanitize_text_field', 'normalize_array_or_string'),
+    create_meta_field_config('video_data_aside_video', 'Aside_video', 'sanitize_text_field', 'normalize_array_or_string')
 ];
 
 add_action('save_post_banner', 'save_banner_meta');
@@ -184,9 +187,9 @@ function save_banner_meta($post_id)
     foreach ($fields_banner as $field) {
         $key = $field['key'];
         $sanitize = $field['sanitize_for_save'];
-        if (!$sanitize){
+        if (!$sanitize) {
             $value = $_POST[$key];
-        }else{
+        } else {
             $value = call_user_func($sanitize, $_POST[$key]);
         }
         // Оновлюємо мета-дані
