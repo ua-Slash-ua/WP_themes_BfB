@@ -9,11 +9,11 @@ $fields_user = [
     create_meta_field_config('img_link_data_banner', 'banner', 'sanitize_text_field', 'normalize_array_or_string'),
     create_meta_field_config('point_data_favourite_exercise', 'favourite_exercise', 'sanitize_text_field', 'normalize_to_array'),
     create_meta_field_config('point_data_my_specialty', 'my_specialty', 'sanitize_text_field', 'normalize_to_array'),
-    create_meta_field_config('hl_data_result', 'result', '', 'normalize_to_array'),
     create_meta_field_config('hl_data_my_experience', 'my_experience', '', 'normalize_to_array'),
     create_meta_field_config('hl_data_my_wlocation', 'my_wlocation', '', 'normalize_to_array'),
-    create_meta_field_config('hl_data_schedule', 'schedule', '', 'normalize_to_array'),
 ];
+
+
 
 function add_trainer_meta_boxes($user)
 {
@@ -77,7 +77,7 @@ function add_trainer_meta_boxes($user)
 
                     <label for="point_data_my_specialty">
                         <input type="text" hidden="hidden" id="point_data_my_specialty" name="point_data_my_specialty"
-                               value="<?php echo esc_attr($point_my_specialty); ?>">
+                               value="<?php echo esc_attr(json_encode($point_my_specialty)); ?>">
                     </label>
                     <div id="point_container_my_specialty" class="point_container">
 
@@ -99,7 +99,7 @@ function add_trainer_meta_boxes($user)
                     <label for="point_data_favourite_exercise">
                         <input type="text" hidden="hidden" id="point_data_favourite_exercise"
                                name="point_data_favourite_exercise"
-                               value="<?php echo esc_attr($point_favourite_exercise); ?>">
+                               value="<?php echo esc_attr(json_encode($point_favourite_exercise)); ?>">
                     </label>
                     <div id="point_container_favourite_exercise" class="point_container">
 
@@ -112,15 +112,9 @@ function add_trainer_meta_boxes($user)
                 <h1>Досвід роботи</h1>
                 <div class="container-hl-add">
                     <input type="text" name="hl_data_my_experience" id="hl_data_my_experience"
-                           value="<?php echo esc_attr($hl_my_experience); ?>"
+                           value="<?php echo esc_attr(json_encode($hl_my_experience)); ?>"
                            hidden="hidden">
-                    <label for="hl_input_text_text">Text</label>
-                    <input type="text" id="hl_input_text_text" class="input_text-item">
-                    <div class="hl_img_svg" id="hl_img_svg_icon">
-                        <label for="hl_img_svg_input_icon">Icon</label>
-                        <textarea id="hl_img_svg_input_icon" cols="30" rows="10"></textarea>
-                        <div class="hl_img_svg_preview"></div>
-                    </div>
+
                     <label for="hl_input_text_gym">Gym</label>
                     <input type="text" id="hl_input_text_gym" class="input_text-item">
                     <label for="hl_input_date_date_start">Date_start</label>
@@ -141,23 +135,9 @@ function add_trainer_meta_boxes($user)
                 <h1>Місця проведення тренувань</h1>
                 <div class="container-hl-add">
                     <input type="text" name="hl_data_my_wlocation" id="hl_data_my_wlocation"
-                           value="<?php echo esc_attr($hl_my_wlocation); ?>"
+                           value="<?php echo esc_attr(json_encode($hl_my_wlocation)); ?>"
                            hidden="hidden">
-                    <label for="hl_input_text_text">Text</label>
-                    <input type="text" id="hl_input_text_text" class="input_text-item">
-                    <div class="hl_img_svg" id="hl_img_svg_icon">
-                        <label for="hl_img_svg_input_icon">Icon</label>
-                        <textarea id="hl_img_svg_input_icon" cols="30" rows="10"></textarea>
-                        <div class="hl_img_svg_preview"></div>
-                    </div>
-                    <label for="hl_input_text_gym">Gym</label>
-                    <input type="text" id="hl_input_text_gym" class="input_text-item">
-                    <label for="hl_input_date_date_start">Date_start</label>
-                    <input type="date" id="hl_input_date_date_start" class="input_text-item">
-                    <label for="hl_input_date_date_end">Date_end</label>
-                    <input type="date" id="hl_input_date_date_end" class="input_text-item">
-                    <label for="hl_textarea_ex_description">Ex_description</label>
-                    <textarea id="hl_textarea_ex_description" cols="30" rows="10"></textarea>
+
                     <label for="hl_input_text_title">Title</label>
                     <input type="text" id="hl_input_text_title" class="input_text-item">
                     <label for="hl_input_text_email">Email</label>
@@ -209,7 +189,6 @@ function save_user_custom_meta_fields($user_id) {
     }
 }
 
-// === 3. Додавання до REST API (wp/v2/users/<id>) ===
 add_filter('rest_prepare_user', 'register_user_rest_meta_fields', 10, 3);
 
 function register_user_rest_meta_fields($response, $user, $request) {
@@ -277,3 +256,32 @@ add_action('admin_enqueue_scripts', function ($hook) {
         );
     }
 });
+add_action('rest_insert_user', 'add_custom_user_meta_on_create', 10, 3);
+
+function add_custom_user_meta_on_create($user, $request, $creating) {
+    if (!$creating) return;
+
+    if (!isset($request['meta']) || !is_array($request['meta'])) return;
+
+    $meta = $request['meta'];
+
+    // Перелік очікуваних мета-полів (назви з JSON)
+    $fields = [
+        'input_text_position',
+        'input_text_experience',
+        'input_text_locations',
+        'input_text_boards',
+        'textarea_super_power',
+        'img_link_data_banner',
+        'point_data_favourite_exercise',
+        'point_data_my_specialty',
+        'hl_data_my_experience',
+        'hl_data_my_wlocation',
+    ];
+
+    foreach ($fields as $key) {
+        if (array_key_exists($key, $meta)) {
+            update_user_meta($user->ID, $key, $meta[$key]);
+        }
+    }
+}
