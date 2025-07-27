@@ -942,9 +942,9 @@ function processHardLabel(hlNames) {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    let tabs = ['main', 'map', 'contact']
+    let tabs = ['main', 'gallery', 'map', 'contact']
     actionTab(tabs)
-    let hlNames = ['contact']
+    let hlNames = ['contact','gallery']
     processHardLabel(hlNames)
     processMap()
 

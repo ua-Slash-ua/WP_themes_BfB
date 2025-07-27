@@ -49,6 +49,7 @@ function get_theme_settings_info()
         'input_text_email' => 'plain',
         'input_text_address' => 'plain',
         'hl_data_contact' => 'json',
+        'hl_data_gallery' => 'json',
         'map_markers' => 'json',
 
     ];
@@ -104,6 +105,7 @@ function register_settings_theme_settingss_group()
         'input_text_email',
         'input_text_address',
         'hl_data_contact',
+        'hl_data_gallery',
         'map_markers',
     ];
     foreach ($meta_fields as $key) {
@@ -131,11 +133,13 @@ function render_theme_settingss_page()
             $input_text_email = get_option('input_text_email');
             $input_text_address = get_option('input_text_address');
             $hl_contact = get_option('hl_data_contact');
+            $hl_gallery = get_option('hl_data_gallery');
             $map_markers = get_option('map_markers');
             ?>
             <div class="mtab_hero">
                 <ul class="mtab_header">
                     <li class="mtab_header_item tab_active" id="main">Головна</li>
+                    <li class="mtab_header_item" id="gallery">Галерея</li>
                     <li class="mtab_header_item" id="map">Карта</li>
                     <li class="mtab_header_item" id="contact">Контакти</li>
 
@@ -143,6 +147,30 @@ function render_theme_settingss_page()
                 <div class="mtab_content">
                     <div class="mtab_content_item content_active" id="content_main">
 
+                    </div>
+                    <div class="mtab_content_item" id="content_gallery">
+                        <div class="form-container-hl">
+                            <div id="container-hl-gallery" class="container-hl">
+                                <h1>Галерея BfB</h1>
+                                <div class="container-hl-add">
+                                    <input type="text" name="hl_data_gallery" id="hl_data_gallery"
+                                           value="<?php echo esc_attr($hl_gallery); ?>"
+                                           hidden="hidden">
+                                    <div class="hl_img_link" id="hl_img_link_photo">
+                                        <input type="button" value="Upload Photo" id="hl_img_link_upload_photo">
+                                        <div class="hl_img_link_preview_container"
+                                             id="hl_img_link_preview_container_photo">
+
+                                        </div>
+                                    </div>
+                                    <input type="button" id="hl_btn_add_gallery" value="Add">
+                                </div>
+                                <div class="container-hl-preview">
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="mtab_content_item" id="content_map">
                         <input type="text" hidden="hidden" name="map_markers" id="map_markers"
