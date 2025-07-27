@@ -27,6 +27,8 @@ require THEME_PATH . '/inc/admin_panel/ap_events.php';
 require THEME_PATH . '/inc/custom_label/new_role_coach.php';
 require THEME_PATH . '/inc/custom_label/new_role_partner.php';
 
+require THEME_PATH . '/inc/custom_label/coach_label.php';
+
 // Include <other>
 
 add_theme_support('post-thumbnails');

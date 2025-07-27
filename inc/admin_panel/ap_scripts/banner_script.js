@@ -209,10 +209,7 @@ function processedVideoLink(videoNames) {
 
 document.addEventListener('DOMContentLoaded',function (){
 
-let imgLinks = ['banner']
-    processedImgLink(imgLinks);
-
-let imgLinks = ['aside_photo']
+let imgLinks = ['aside_photo', 'banner']
     processedImgLink(imgLinks);
 
 let videoLinks = ['aside_video'];
