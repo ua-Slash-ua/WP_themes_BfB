@@ -26,6 +26,10 @@ require THEME_PATH . '/inc/custom_functions/filter_user_login.php';
 
 
 
+// Include <taxonomy>
+require THEME_PATH . '/inc/taxonomy/user_category.php';
+
+
 // Include <custom_labels>
 require THEME_PATH . '/inc/custom_label/new_role_coach.php';
 require THEME_PATH . '/inc/custom_label/new_role_partner.php';
