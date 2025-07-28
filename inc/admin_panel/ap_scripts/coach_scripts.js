@@ -952,7 +952,7 @@ function processPoint(pointNames) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    let tabs = ['self', 'specialty', 'exercise', 'experience', 'wlocation', 'certificate']
+    let tabs = ['self', 'specialty', 'exercise', 'experience', 'wlocation', 'certificate', 'gallery']
     actionTab(tabs)
 
     let points = ['favourite_exercise', 'my_specialty']
@@ -962,6 +962,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'my_experience',
         'my_wlocation']
     processHardLabel(hlNames)
-
+    let imgLinks = ['gallery_']
+    processedImgLink(imgLinks);
 
 })

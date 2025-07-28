@@ -6,7 +6,7 @@ $fields_user = [
     create_meta_field_config('input_text_locations', 'locations'),
     create_meta_field_config('input_text_boards', 'boards'),
     create_meta_field_config('textarea_super_power', 'super_power'),
-    create_meta_field_config('img_link_data_banner', 'banner', 'sanitize_text_field', 'normalize_array_or_string'),
+    create_meta_field_config('img_link_data_gallery_', 'gallery', 'sanitize_text_field', 'normalize_array_or_string'),
     create_meta_field_config('point_data_favourite_exercise', 'favourite_exercise', 'sanitize_text_field', 'normalize_to_array'),
     create_meta_field_config('point_data_my_specialty', 'my_specialty', 'sanitize_text_field', 'normalize_to_array'),
     create_meta_field_config('hl_data_my_experience', 'my_experience', '', 'normalize_to_array'),
@@ -30,6 +30,8 @@ function add_trainer_meta_boxes($user)
     $point_my_specialty = get_user_meta($user_id, 'point_data_my_specialty', true);
     $hl_my_experience = get_user_meta($user_id, 'hl_data_my_experience', true);
     $hl_my_wlocation = get_user_meta($user_id, 'hl_data_my_wlocation', true);
+    $img_link_gallery_ = get_user_meta($user_id, 'img_link_data_gallery_', true);
+
 
     ?>
     <div class="mtab_hero">
@@ -40,26 +42,27 @@ function add_trainer_meta_boxes($user)
             <li class="mtab_header_item" id="experience">Досвід роботи</li>
             <li class="mtab_header_item" id="wlocation">Місця проведення тренувань</li>
             <li class="mtab_header_item" id="certificate">Сертифікати</li>
+            <li class="mtab_header_item" id="gallery">Галерея</li>
 
         </ul>
         <div class="mtab_content_item content_active" id="content_self">
             <div class="form-container-input_text">
-                <label for="input_text_position">Position</label>
+                <label for="input_text_position">Посада</label>
                 <input type="text" value="<?php echo esc_attr($input_text_position); ?>" name="input_text_position"
                        id="input_text_position" class="input_text-item">
-                <label for="input_text_experience">Experience</label>
-                <input type="text" value="<?php echo esc_attr($input_text_experience); ?>" name="input_text_experience"
+                <label for="input_text_experience">Досвід (років)</label>
+                <input type="number" value="<?php echo esc_attr($input_text_experience); ?>" name="input_text_experience"
                        id="input_text_experience" class="input_text-item">
-                <label for="input_text_locations">Locations</label>
+                <label for="input_text_locations">Локація</label>
                 <input type="text" value="<?php echo esc_attr($input_text_locations); ?>" name="input_text_locations"
                        id="input_text_locations" class="input_text-item">
-                <label for="input_text_boards">Boards</label>
+                <label for="input_text_boards">Наявна кількість бордів</label>
                 <input type="text" value="<?php echo esc_attr($input_text_boards); ?>" name="input_text_boards"
                        id="input_text_boards" class="input_text-item">
 
             </div>
             <div class="form-container-textarea">
-                <label for="textarea_super_power">Super_power</label>
+                <label for="textarea_super_power">Моя суперсила</label>
                 <textarea name="textarea_super_power" id="textarea_super_power" cols="30"
                           rows="10"><?php echo esc_attr($textarea_super_power); ?></textarea>
 
@@ -69,7 +72,7 @@ function add_trainer_meta_boxes($user)
             <div class="form-container-point">
                 <div class="point_hero" id="point_hero_my_specialty">
                     <div class="point-edit">
-                        <label for="point_input_my_specialty">My_specialty
+                        <label for="point_input_my_specialty">Спеціалізація
                             <input type="text" id="point_input_my_specialty" class="point_input">
                         </label>
                         <input type="button" value="+" id="point_add_my_specialty" class="point_add">
@@ -77,7 +80,7 @@ function add_trainer_meta_boxes($user)
 
                     <label for="point_data_my_specialty">
                         <input type="text" hidden="hidden" id="point_data_my_specialty" name="point_data_my_specialty"
-                               value="<?php echo esc_attr(json_encode($point_my_specialty)); ?>">
+                               value="<?php echo esc_attr($point_my_specialty); ?>">
                     </label>
                     <div id="point_container_my_specialty" class="point_container">
 
@@ -90,7 +93,7 @@ function add_trainer_meta_boxes($user)
             <div class="form-container-point">
                 <div class="point_hero" id="point_hero_favourite_exercise">
                     <div class="point-edit">
-                        <label for="point_input_favourite_exercise">Favourite_exercise
+                        <label for="point_input_favourite_exercise">Моя улюблена вправа
                             <input type="text" id="point_input_favourite_exercise" class="point_input">
                         </label>
                         <input type="button" value="+" id="point_add_favourite_exercise" class="point_add">
@@ -99,7 +102,7 @@ function add_trainer_meta_boxes($user)
                     <label for="point_data_favourite_exercise">
                         <input type="text" hidden="hidden" id="point_data_favourite_exercise"
                                name="point_data_favourite_exercise"
-                               value="<?php echo esc_attr(json_encode($point_favourite_exercise)); ?>">
+                               value="<?php echo esc_attr($point_favourite_exercise); ?>">
                     </label>
                     <div id="point_container_favourite_exercise" class="point_container">
 
@@ -112,16 +115,16 @@ function add_trainer_meta_boxes($user)
                 <h1>Досвід роботи</h1>
                 <div class="container-hl-add">
                     <input type="text" name="hl_data_my_experience" id="hl_data_my_experience"
-                           value="<?php echo esc_attr(json_encode($hl_my_experience)); ?>"
+                           value="<?php echo esc_attr($hl_my_experience); ?>"
                            hidden="hidden">
 
-                    <label for="hl_input_text_gym">Gym</label>
+                    <label for="hl_input_text_gym">Назва залу</label>
                     <input type="text" id="hl_input_text_gym" class="input_text-item">
-                    <label for="hl_input_date_date_start">Date_start</label>
+                    <label for="hl_input_date_date_start">Дата початку</label>
                     <input type="date" id="hl_input_date_date_start" class="input_text-item">
-                    <label for="hl_input_date_date_end">Date_end</label>
+                    <label for="hl_input_date_date_end">Дата завершення</label>
                     <input type="date" id="hl_input_date_date_end" class="input_text-item">
-                    <label for="hl_textarea_ex_description">Ex_description</label>
+                    <label for="hl_textarea_ex_description">Опис</label>
                     <textarea id="hl_textarea_ex_description" cols="30" rows="10"></textarea>
                     <input type="button" id="hl_btn_add_my_experience" value="Add">
                 </div>
@@ -135,20 +138,20 @@ function add_trainer_meta_boxes($user)
                 <h1>Місця проведення тренувань</h1>
                 <div class="container-hl-add">
                     <input type="text" name="hl_data_my_wlocation" id="hl_data_my_wlocation"
-                           value="<?php echo esc_attr(json_encode($hl_my_wlocation)); ?>"
+                           value="<?php echo esc_attr($hl_my_wlocation); ?>"
                            hidden="hidden">
 
-                    <label for="hl_input_text_title">Title</label>
+                    <label for="hl_input_text_title">Назва</label>
                     <input type="text" id="hl_input_text_title" class="input_text-item">
-                    <label for="hl_input_text_email">Email</label>
+                    <label for="hl_input_text_email">Пошта</label>
                     <input type="text" id="hl_input_text_email" class="input_text-item">
-                    <label for="hl_input_text_phone">Phone</label>
+                    <label for="hl_input_text_phone">Телефон</label>
                     <input type="text" id="hl_input_text_phone" class="input_text-item">
-                    <label for="hl_input_text_schedule_five">Schedule_five</label>
+                    <label for="hl_input_text_schedule_five">Час роботи у будні</label>
                     <input type="text" id="hl_input_text_schedule_five" class="input_text-item">
-                    <label for="hl_input_text_schedule_two">Schedule_two</label>
+                    <label for="hl_input_text_schedule_two">Час роботи у вихідні</label>
                     <input type="text" id="hl_input_text_schedule_two" class="input_text-item">
-                    <label for="hl_input_text_address">Address</label>
+                    <label for="hl_input_text_address">Адреса</label>
                     <input type="text" id="hl_input_text_address" class="input_text-item">
                     <input type="button" id="hl_btn_add_my_wlocation" value="Add">
                 </div>
@@ -158,6 +161,19 @@ function add_trainer_meta_boxes($user)
             </div>
         </div>
         <div class="mtab_content_item " id="content_certificate">
+        </div>
+        <div class="mtab_content_item " id="content_gallery">
+            <div class="form-container-img_link">
+                <div class="img_link_hero" id="img_link_hero_gallery_">
+                    <input type="button" value="Upload Gallery_" id="img_link_upload_gallery_">
+                    <input type="text" hidden="hidden" value="<?php echo esc_attr($img_link_gallery_); ?>"
+                           id="img_link_data_gallery_" name="img_link_data_gallery_">
+                    <div class="img_link_preview_container" id="img_link_preview_container_gallery_">
+
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
     <?php
@@ -254,12 +270,12 @@ add_action('admin_enqueue_scripts', function ($hook) {
             [],
             '1.0'
         );
+        enqueue_media_uploader();
     }
 });
 add_action('rest_insert_user', 'add_custom_user_meta_on_create', 10, 3);
 
 function add_custom_user_meta_on_create($user, $request, $creating) {
-    if (!$creating) return;
 
     if (!isset($request['meta']) || !is_array($request['meta'])) return;
 
@@ -277,11 +293,17 @@ function add_custom_user_meta_on_create($user, $request, $creating) {
         'point_data_my_specialty',
         'hl_data_my_experience',
         'hl_data_my_wlocation',
+        'img_link_data_gallery_',
     ];
 
     foreach ($fields as $key) {
         if (array_key_exists($key, $meta)) {
-            update_user_meta($user->ID, $key, $meta[$key]);
+            $value = $meta[$key];
+            if (is_array($value)) {
+                $value = json_encode($value, JSON_UNESCAPED_UNICODE);
+            }
+            update_user_meta($user->ID, $key, $value);
         }
     }
+
 }

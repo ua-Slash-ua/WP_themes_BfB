@@ -255,6 +255,8 @@ ul, .wrap{
     border: 1px solid #e9ecef;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
 }
 
 .container-hl-add h3 {
@@ -269,7 +271,7 @@ label {
     display: block;
     margin: 15px 0 5px 0;
     font-weight: 600;
-    color: #495057;
+    /*color: #495057;*/
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -280,31 +282,31 @@ label:first-child {
 }
 
 /* Стилі для інпутів */
-.input_text-item,
-input[type="text"],
-input[type="date"],
-input[type="time"],
-input[type="color"] {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e9ecef;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    background: #fff;
-    box-sizing: border-box;
-}
+/*.input_text-item,*/
+/*input[type="text"],*/
+/*input[type="date"],*/
+/*input[type="time"],*/
+/*input[type="color"] {*/
+/*    width: 100%;*/
+/*    padding: 12px 16px;*/
+/*    border: 2px solid #e9ecef;*/
+/*    border-radius: 6px;*/
+/*    font-size: 14px;*/
+/*    transition: all 0.3s ease;*/
+/*    background: #fff;*/
+/*    box-sizing: border-box;*/
+/*}*/
 
-.input_text-item:focus,
-input[type="text"]:focus,
-input[type="date"]:focus,
-input[type="time"]:focus,
-input[type="color"]:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-    background: #fdfdff;
-}
+/*.input_text-item:focus,*/
+/*input[type="text"]:focus,*/
+/*input[type="date"]:focus,*/
+/*input[type="time"]:focus,*/
+/*input[type="color"]:focus {*/
+/*    outline: none;*/
+/*    border-color: #007bff;*/
+/*    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);*/
+/*    background: #fdfdff;*/
+/*}*/
 
 /* Стилі для чекбокса */
 input[type="checkbox"] {
@@ -316,25 +318,25 @@ input[type="checkbox"] {
 }
 
 /* Стилі для textarea */
-textarea {
-    width: 100%;
-    min-height: 100px;
-    padding: 12px 16px;
-    border: 2px solid #e9ecef;
-    border-radius: 6px;
-    font-size: 14px;
-    font-family: inherit;
-    transition: all 0.3s ease;
-    resize: vertical;
-    box-sizing: border-box;
-}
+/*textarea {*/
+/*    width: 100%;*/
+/*    min-height: 100px;*/
+/*    padding: 12px 16px;*/
+/*    border: 2px solid #e9ecef;*/
+/*    border-radius: 6px;*/
+/*    font-size: 14px;*/
+/*    font-family: inherit;*/
+/*    transition: all 0.3s ease;*/
+/*    resize: vertical;*/
+/*    box-sizing: border-box;*/
+/*}*/
 
-textarea:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-    background: #fdfdff;
-}
+/*textarea:focus {*/
+/*    outline: none;*/
+/*    border-color: #007bff;*/
+/*    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);*/
+/*    background: #fdfdff;*/
+/*}*/
 
 /* Стилі для прихованого інпута */
 input[type="text"][hidden] {
@@ -361,10 +363,12 @@ input[type="text"][hidden] {
 }
 
 /* Кнопки завантаження */
-input[type="button"] {
+.container-hl-add input[type="button"] {
+    width: 20%;
     background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
     border: none;
+    margin-top: 1vh;
     padding: 12px 24px;
     border-radius: 6px;
     font-size: 14px;
@@ -686,6 +690,14 @@ input[type="button"]:active {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
+.hl_btn_edit{
+    background: #3594fb;
+    border-color: rgba(60, 114, 231, 0.4);
+}
+.hl_btn_remove{
+    background: #db525e;
+    border-color: rgba(220, 53, 69, 0.4);
+}
 
 .hl_btn_remove:hover {
     background: #dc3545;
@@ -824,7 +836,7 @@ textarea:focus {
     }
 
     label {
-        color: #ccc;
+        /*color: #ccc;*/
     }
 
     .drag-placeholder {
@@ -945,4 +957,8 @@ textarea:focus {
 }
 h1{
     color: #fff;
+}
+.form-container-textarea{
+    /*padding: 8px 12px;*/
+    margin: 1vh 1vw;
 }

@@ -18,6 +18,7 @@ require THEME_PATH . '/inc/admin_panel/theme_settings.php';
 require THEME_PATH . '/inc/admin_panel/ap_faq.php';
 require THEME_PATH . '/inc/admin_panel/ap_banner.php';
 require THEME_PATH . '/inc/admin_panel/ap_events.php';
+require THEME_PATH . '/inc/admin_panel/ap_test.php';
 
 // Include <endpoint>
 
