@@ -965,7 +965,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'my_experience',
         'my_wlocation']
     processHardLabel(hlNames)
-    let imgLinks = ['gallery_','avatar']
+    let imgLinks = ['gallery_','avatar','certificate_']
     processedImgLink(imgLinks);
 
 })

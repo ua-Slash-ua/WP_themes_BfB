@@ -113,7 +113,7 @@ function handle_media_upload_endpoint($request)
     $allowed_field_types = array(
         'img_link_data_gallery_',
         'img_link_data_avatar',
-        'img_link_data_certificate'
+        'img_link_data_certificate_'
     );
 
     if (!in_array($field_type, $allowed_field_types)) {
@@ -379,7 +379,7 @@ function update_user_field_with_url($user_id, $field_type, $new_url)
 
     switch ($field_type) {
         case 'img_link_data_gallery_':
-        case 'img_link_data_certificate':
+        case 'img_link_data_certificate_':
             if (!in_array($new_url, $current_value)) {
                 $current_value[] = $new_url;
                 $updated_value = json_encode($current_value); // 👉 зберігаємо як JSON-рядок
