@@ -107,8 +107,11 @@ function processedImgLink(imgNames) {
         try {
             imgLinkDataArray = JSON.parse(imgLinkData.value);
         } catch (e) {
+            imgLinkDataArray = [imgLinkData.value]
             console.log('Помилка при парсингу JSON: перший запуск поста');
         }
+        console.log(imgName)
+        console.log(imgLinkDataArray)
         imgLinkUploadPhoto(imgName, imgLinkDataArray)
     }
 
@@ -962,7 +965,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'my_experience',
         'my_wlocation']
     processHardLabel(hlNames)
-    let imgLinks = ['gallery_']
+    let imgLinks = ['gallery_','avatar']
     processedImgLink(imgLinks);
 
 })

@@ -7,6 +7,7 @@ $fields_user = [
     create_meta_field_config('input_text_boards', 'boards'),
     create_meta_field_config('textarea_super_power', 'super_power'),
     create_meta_field_config('img_link_data_gallery_', 'gallery', 'sanitize_text_field', 'normalize_array_or_string'),
+    create_meta_field_config('img_link_data_avatar', 'avatar', 'sanitize_text_field', 'normalize_array_or_string'),
     create_meta_field_config('point_data_favourite_exercise', 'favourite_exercise', 'sanitize_text_field', 'normalize_to_array'),
     create_meta_field_config('point_data_my_specialty', 'my_specialty', 'sanitize_text_field', 'normalize_to_array'),
     create_meta_field_config('hl_data_my_experience', 'my_experience', '', 'normalize_to_array'),
@@ -31,7 +32,7 @@ function add_trainer_meta_boxes($user)
     $hl_my_experience = get_user_meta($user_id, 'hl_data_my_experience', true);
     $hl_my_wlocation = get_user_meta($user_id, 'hl_data_my_wlocation', true);
     $img_link_gallery_ = get_user_meta($user_id, 'img_link_data_gallery_', true);
-
+    $img_link_avatar = get_user_meta($user_id, 'img_link_data_avatar', true);
 
     ?>
     <div class="mtab_hero">
@@ -47,6 +48,17 @@ function add_trainer_meta_boxes($user)
         </ul>
         <div class="mtab_content_item content_active" id="content_self">
             <div class="form-container-input_text">
+                <div class="form-container-img_link">
+                    <div class="img_link_hero" id="img_link_hero_avatar">
+                        <input type="button" value="Upload Avatar" id="img_link_upload_avatar">
+                        <input type="text" hidden="hidden" value="<?php echo esc_attr($img_link_avatar); ?>"
+                               id="img_link_data_avatar" name="img_link_data_avatar">
+                        <div class="img_link_preview_container" id="img_link_preview_container_avatar">
+
+                        </div>
+                    </div>
+
+                </div>
                 <label for="input_text_position">Посада</label>
                 <input type="text" value="<?php echo esc_attr($input_text_position); ?>" name="input_text_position"
                        id="input_text_position" class="input_text-item">
@@ -297,13 +309,10 @@ function add_custom_user_meta_on_create($user, $request, $creating) {
     ];
 
     foreach ($fields as $key) {
+        error_log('key = '.$key);
         if (array_key_exists($key, $meta)) {
-            $value = $meta[$key];
-            if (is_array($value)) {
-                $value = json_encode($value, JSON_UNESCAPED_UNICODE);
-            }
-            update_user_meta($user->ID, $key, $value);
+            update_user_meta($user->ID, $key, $meta[$key]);
         }
     }
-
 }
+
