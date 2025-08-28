@@ -3,7 +3,13 @@
 $fields_user = [
     create_meta_field_config('input_text_position', 'position'),
     create_meta_field_config('input_text_experience', 'experience'),
-    create_meta_field_config('input_text_locations', 'locations'),
+    create_meta_field_config('input_text_locations_city', 'location_city'),
+    create_meta_field_config('input_text_locations_country', 'location_country'),
+
+    create_meta_field_config('input_text_social_phone', 'social_phone'),
+    create_meta_field_config('input_text_social_telegram', 'social_telegram'),
+    create_meta_field_config('input_text_social_instagram', 'social_instagram'),
+
     create_meta_field_config('input_text_boards', 'boards'),
     create_meta_field_config('textarea_super_power', 'super_power'),
     create_meta_field_config('img_link_data_gallery_', 'gallery', 'sanitize_text_field', 'normalize_array_or_string'),
@@ -24,7 +30,8 @@ function add_trainer_meta_boxes($user)
     }
     $input_text_position = get_user_meta($user_id, 'input_text_position', true);
     $input_text_experience = get_user_meta($user_id, 'input_text_experience', true);
-    $input_text_locations = get_user_meta($user_id, 'input_text_locations', true);
+    $input_text_locations_country = get_user_meta($user_id, 'input_text_locations_country', true);
+    $input_text_locations_city = get_user_meta($user_id, 'input_text_locations_city', true);
     $input_text_boards = get_user_meta($user_id, 'input_text_boards', true);
     $textarea_super_power = get_user_meta($user_id, 'textarea_super_power', true);
     $point_favourite_exercise = get_user_meta($user_id, 'point_data_favourite_exercise', true);
@@ -35,11 +42,16 @@ function add_trainer_meta_boxes($user)
     $img_link_certificate_ = get_user_meta($user_id, 'img_link_data_certificate_', true);
     $img_link_avatar = get_user_meta($user_id, 'img_link_data_avatar', true);
 
+    $input_text_social_phone = get_user_meta($user_id, 'input_text_social_phone', true);
+    $input_text_social_telegram = get_user_meta($user_id, 'input_text_social_telegram', true);
+    $input_text_social_instagram = get_user_meta($user_id, 'input_text_social_instagram', true);
+
     ?>
     <div class="mtab_hero">
         <ul class="mtab_header">
             <li class="mtab_header_item tab_active" id="self">Особисті дані</li>
             <li class="mtab_header_item" id="specialty">Спеціалізація</li>
+            <li class="mtab_header_item" id="social">Контактні дані</li>
             <li class="mtab_header_item" id="exercise">Моя улюблена вправа</li>
             <li class="mtab_header_item" id="experience">Досвід роботи</li>
             <li class="mtab_header_item" id="wlocation">Місця проведення тренувань</li>
@@ -59,7 +71,6 @@ function add_trainer_meta_boxes($user)
                 </div>
 
 
-
             </div>
             <div class="form-container-input_text">
 
@@ -70,9 +81,12 @@ function add_trainer_meta_boxes($user)
                 <input type="number" value="<?php echo esc_attr($input_text_experience); ?>"
                        name="input_text_experience"
                        id="input_text_experience" class="input_text-item">
-                <label for="input_text_locations">Локація</label>
-                <input type="text" value="<?php echo esc_attr($input_text_locations); ?>" name="input_text_locations"
-                       id="input_text_locations" class="input_text-item">
+                <label for="input_text_locations_country">Локація(Країна)</label>
+                <input type="text" value="<?php echo esc_attr($input_text_locations_country); ?>" name="input_text_locations_country"
+                       id="input_text_locations_country" class="input_text-item">
+                <label for="input_text_locations_city">Локація(Місто)</label>
+                <input type="text" value="<?php echo esc_attr($input_text_locations_city); ?>" name="input_text_locations_city"
+                       id="input_text_locations_city" class="input_text-item">
                 <label for="input_text_boards">Наявна кількість бордів</label>
                 <input type="text" value="<?php echo esc_attr($input_text_boards); ?>" name="input_text_boards"
                        id="input_text_boards" class="input_text-item">
@@ -104,6 +118,21 @@ function add_trainer_meta_boxes($user)
                 </div>
             </div>
 
+        </div>
+        <div class="mtab_content_item " id="content_social">
+            <div class="form-container-input_text">
+
+                <label for="input_text_social_phone">Телефон</label>
+                <input type="text" value="<?php echo esc_attr($input_text_social_phone); ?>" name="input_text_social_phone"
+                       id="input_text_social_phone" class="input_text-item">
+                <label for="input_text_social_telegram">Інстаграм</label>
+                <input type="text" value="<?php echo esc_attr($input_text_social_telegram); ?>"
+                       name="input_text_social_telegram"
+                       id="input_text_social_telegram" class="input_text-item">
+                <label for="input_text_social_instagram">Телеграм</label>
+                <input type="text" value="<?php echo esc_attr($input_text_social_instagram); ?>" name="input_text_social_instagram"
+                       id="input_text_social_instagram" class="input_text-item">
+            </div>
         </div>
         <div class="mtab_content_item " id="content_exercise">
             <div class="form-container-point">
@@ -314,7 +343,8 @@ function add_custom_user_meta_on_create($user, $request, $creating)
     $fields = [
         'input_text_position',
         'input_text_experience',
-        'input_text_locations',
+        'input_text_locations_city',
+        'input_text_locations_country',
         'input_text_boards',
         'textarea_super_power',
         'img_link_data_banner',
@@ -323,6 +353,11 @@ function add_custom_user_meta_on_create($user, $request, $creating)
         'hl_data_my_experience',
         'hl_data_my_wlocation',
         'img_link_data_gallery_',
+        'is_viewed_video_instruction',
+
+        'input_text_social_phone',
+        'input_text_social_telegram',
+        'input_text_social_instagram',
     ];
 
     foreach ($fields as $key) {
@@ -332,7 +367,11 @@ function add_custom_user_meta_on_create($user, $request, $creating)
                 $value = json_encode($value, JSON_UNESCAPED_UNICODE);
             }
             update_user_meta($user->ID, $key, $value);
+        } else {
+            update_user_meta($user->ID, $key, '');
         }
     }
+
+
 }
 

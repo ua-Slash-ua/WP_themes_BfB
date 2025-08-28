@@ -21,6 +21,9 @@ function register_user_categories_taxonomy() {
                 'edit_item'     => 'Редагувати категорію',
             ),
             'hierarchical'      => true,
+            'show_in_rest' => true,           // ✅ робимо доступним у REST API
+            'rest_base' => 'user_category',   // ✅ endpoint
+            'rest_controller_class' => 'WP_REST_Terms_Controller',
             'show_ui'           => true,
             'show_admin_column' => false, // Не працює для користувачів
             'rewrite'           => false, // Відключаємо для користувачів

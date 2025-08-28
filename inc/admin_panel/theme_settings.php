@@ -91,6 +91,11 @@ function get_theme_settings_info()
         }
 
     }
+    $data['user_city'] = get_user_meta_values('input_text_locations_city');
+
+    $data['user_country'] = get_user_meta_values('input_text_locations_country');
+
+
     // Повертаємо дані як REST API відповідь
     return rest_ensure_response($data);
 }
@@ -146,7 +151,6 @@ function render_theme_settingss_page()
                 </ul>
                 <div class="mtab_content">
                     <div class="mtab_content_item content_active" id="content_main">
-
                     </div>
                     <div class="mtab_content_item" id="content_gallery">
                         <div class="form-container-hl">

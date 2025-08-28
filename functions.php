@@ -13,17 +13,21 @@ require THEME_PATH . '/inc/helper_func/hf_enqueue_media_uploader.php';
 require THEME_PATH . '/inc/helper_func/hf_create_meta_field_config.php';
 require THEME_PATH . '/inc/helper_func/reorder_theme_settings_sub_menu.php';
 
+
+
 // Include <admin_panel>
 require THEME_PATH . '/inc/admin_panel/theme_settings.php';
 require THEME_PATH . '/inc/admin_panel/ap_faq.php';
 require THEME_PATH . '/inc/admin_panel/ap_banner.php';
 require THEME_PATH . '/inc/admin_panel/ap_events.php';
+require THEME_PATH . '/inc/admin_panel/ap_tariff.php';
 
 // Include <endpoint>
 require THEME_PATH . '/inc/endpoint/upload_media.php';
 // Include <custom_functions>
 require THEME_PATH . '/inc/custom_functions/filter_user_login.php';
-
+require THEME_PATH . '/inc/custom_functions/get_user_label.php';
+require THEME_PATH . '/inc/custom_functions/filter_users.php';
 
 
 // Include <taxonomy>

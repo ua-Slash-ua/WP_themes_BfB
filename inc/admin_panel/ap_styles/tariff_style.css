@@ -1,0 +1,191 @@
+/* All input styles*/
+.form-container-input_text,
+.form-container-input_color,
+.form-container-input_date,
+.form-container-input_time,
+.form-container-input_checkbox {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-container-input_text label,
+.form-container-input_color label,
+.form-container-input_date label,
+.form-container-input_time label,
+.form-container-input_checkbox label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-container-input_text .input_text-item,
+.form-container-input_color .input_color-item,
+.form-container-input_date .input_date-item,
+.form-container-input_time .input_time-item {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.form-container-input_text .input_text-item:focus,
+.form-container-input_color .input_color-item:focus,
+.form-container-input_date .input_date-item:focus,
+.form-container-input_time .input_time-item:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-container-input_text .input_text-item::placeholder,
+.form-container-input_color .input_color-item::placeholder,
+.form-container-input_date .input_date-item::placeholder,
+.form-container-input_time .input_time-item::placeholder {
+    color: #999;
+}
+
+.form-container-input_checkbox .input_checkbox-item {
+    margin-top: 8px;
+}
+
+.form-container-input_checkbox .input_checkbox-item:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Спеціальні стилі для input color */
+.form-container-input_color .input_color-item {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-container-input_color .input_color-item:focus {
+    border-color: #007bff;
+    outline: none;
+    transform: scale(1.1); /* Ефект збільшення при фокусі */
+}
+
+.form-container-input_color .input_color-item::-webkit-color-swatch {
+    border-radius: 50%;
+    border: none;
+}
+
+.form-container-input_color .input_color-item::-moz-color-swatch {
+    border-radius: 50%;
+    border: none;
+}
+
+/* All table styles*/
+.form-container-table {
+    margin-bottom: 24px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: #fff;
+}
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.table_content_input {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.table_content_input label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.table_content_input input[type="text"] {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+#btn_table_input_add-table {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#btn_table_input_add-table:hover {
+    background-color: #218838;
+}
+
+.table_content_main {
+    overflow-x: auto;
+}
+
+#table-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+.table-head th {
+    background-color: #f8f9fa;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    text-align: left;
+    font-size: 14px;
+}
+
+.table-body td {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.table-body tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.btn_edit,
+.btn_remove {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-right: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn_edit {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn_edit:hover {
+    background-color: #0056b3;
+}
+
+.btn_remove {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn_remove:hover {
+    background-color: #c82333;
+}

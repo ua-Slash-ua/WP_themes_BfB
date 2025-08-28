@@ -955,7 +955,7 @@ function processPoint(pointNames) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    let tabs = ['self', 'specialty', 'exercise', 'experience', 'wlocation', 'certificate', 'gallery']
+    let tabs = ['self', 'specialty', 'social', 'exercise', 'experience', 'wlocation', 'certificate', 'gallery']
     actionTab(tabs)
 
     let points = ['favourite_exercise', 'my_specialty']
